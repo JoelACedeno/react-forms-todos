@@ -1,8 +1,14 @@
-import { render, screen } from '@testing-library/react';
+import React from "react";
+import { render } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+// smoke test 
+it("renders without crashing", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
 });
+
+// snapshot test
+it("matches snapshot", () => {
+  const { asFragment } = render(<App />);
+  expect(asFragment()).toMatchSnapshot();
+})
